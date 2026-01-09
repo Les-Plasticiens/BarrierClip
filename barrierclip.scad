@@ -30,14 +30,14 @@ module face_plate( anchor=CENTER, spin=0, orient=UP ) {
 
 face_plate()  
     align(FRONT+RIGHT) {
-        back(3.5) cuboid([35.97, 3.5, 37.62], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT],anchor=LEFT) align(RIGHT) {
-            back(7.45) cuboid([3.5, 18.4, 37.62], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT],anchor=RIGHT) align(BACK) {
-                color("RED")  zrot(10)  left(7.895) fwd(3.5)prismoid(size2=[12.29, 3.5], h=37.62, xang=[90, 90], yang=[90, 90],anchor=RIGHT) ;
+        back(3.5) cuboid([35.97, 3.5, 37.62], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT]) align(RIGHT) {
+              xrot(90) yrot(90) left(1.75) up(1.75) prismoid(size2=[28.4, 37.62], h=3.5 ,  xang=[90, 100], yang=[90, 90]);// align(BOTTOM) {
+    //            color("RED")  xrot(90) zrot(-10) up(37.62/2) back(1.75 ) left((18.4 - 3.5)/2) prismoid(size2=[12.29, 3.5], h=37.62, xang=[90, 90], yang=[90, 90]) ;
    //             color("RED")  zrot(10)  left(7.895) fwd(3.5)cuboid([12.29, 3.5, 37.62],anchor=RIGHT) ;
 
             }; 
             
         }
-    }
+   // }
 
 //left(100) prismoid(size2=[100,75], h=30, xang=[80, 100], yang=[90, 90]);
