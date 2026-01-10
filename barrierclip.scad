@@ -31,13 +31,20 @@ module face_plate( anchor=CENTER, spin=0, orient=UP ) {
 face_plate()  
     align(FRONT+RIGHT) {
         back(3.5) cuboid([35.97, 3.5, 37.62], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT]) align(RIGHT) {
-              xrot(90) yrot(90) left(1.75) up(1.75) prismoid(size2=[28.4, 37.62], h=3.5 ,  xang=[90, 100], yang=[90, 90]);// align(BOTTOM) {
-    //            color("RED")  xrot(90) zrot(-10) up(37.62/2) back(1.75 ) left((18.4 - 3.5)/2) prismoid(size2=[12.29, 3.5], h=37.62, xang=[90, 90], yang=[90, 90]) ;
-   //             color("RED")  zrot(10)  left(7.895) fwd(3.5)cuboid([12.29, 3.5, 37.62],anchor=RIGHT) ;
-
+              xrot(90) yrot(90) left(1.75) up(1.75) prismoid(size2=[18.4, 37.62], h=3.5 ,  xang=[90, 95], yang=[90, 90], rounding=[3,3,3,3])  align(RIGHT) {
+                yrot(95) right(1.75) down(1.75) 
+                    diff()  prismoid(size2=[14.29, 37.62], h=3.5, xang=[95, 85], yang=[90, 90], anchor=RIGHT) {
+                        edge_profile([TOP + BACK, TOP+FRONT], excess=1, convexity=20)
+                            mask2d_roundover(3);
+                        tag("keep") align(RIGHT) {
+                            yrot(-5) cuboid([4, 37.62, 3.5], rounding=3, edges=[TOP+FRONT, TOP+BACK]) align(RIGHT) xrot(90) left(3.5) fwd(1.75)cyl(r=3.5, h= 37.62, rounding=3);
+                        }
+                    } ;
             }; 
-            
         }
-   // }
+    }
 
-//left(100) prismoid(size2=[100,75], h=30, xang=[80, 100], yang=[90, 90]);
+// left(100) diff() prismoid(size2=[14.29, 37.62], h=3.5, xang=[90, 90], yang=[90, 90], anchor=RIGHT) {
+//                     edge_profile("ALL")
+//                         mask2d_roundover(3);
+//                 } ;
