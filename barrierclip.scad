@@ -6,7 +6,7 @@ $fn = 64;
 module face_plate( anchor=CENTER, spin=0, orient=UP ) {
     attachable(anchor, spin, orient, size=[5,30.45,37.62]) {
         diff() {
-            cuboid([5, 30.45, 37.62], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT]) {
+           cuboid([5, 30.45, 37.62], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT]) {
 
                 tag("keep") position(LEFT) 
                     diff("nope", "yes") {  // holder
@@ -14,7 +14,7 @@ module face_plate( anchor=CENTER, spin=0, orient=UP ) {
                             right(3.5) back(3.5) tag("nope") cuboid([30.95, 30.45, 37.62]);
                             
                             tag("yes")align(BACK+LEFT) {
-                                right(3.5) cuboid([3.5, 0.5, 37.62], anchor=RIGHT);
+                               right(3.5) cuboid([3.5, 0.5, 37.62], anchor=RIGHT);
                             }
                         }
                     
