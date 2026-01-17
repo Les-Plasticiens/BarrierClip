@@ -1,6 +1,6 @@
 include <BOSL2/std.scad>
 $fn = 64;
-// poteau 26.95., largeur face = 22.98
+// poteau 26.95 x 27.45., largeur face = 22.98
 // trou de visse:  7.59 du top, 6.31 du bord avant, diam du trou 4 mm.
 
 module face_plate( anchor=CENTER, spin=0, orient=UP ) {
@@ -10,7 +10,7 @@ module face_plate( anchor=CENTER, spin=0, orient=UP ) {
 
                 tag("keep") position(LEFT) 
                     diff("nope", "yes") {  // holder
-                        cuboid([29.95, 30.45, 37.62],rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT],anchor=RIGHT) {
+                        cuboid([26.95 +3 + 1.5, 30.45, 37.62],rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT],anchor=RIGHT) {
                             right(3.5) back(3.5) tag("nope") cuboid([30.95, 30.45, 37.62]);
                             
                             tag("yes")align(BACK+LEFT) {
@@ -45,7 +45,6 @@ module back_loop( anchor=CENTER, spin=0, orient=UP) {
 face_plate()  
     align(FRONT+RIGHT) {
         back(3.5) cuboid([35.97, 3.5, 37.62], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT]) align(RIGHT) {
-  //                              xrot(90) yrot(90) left(1.75) up(1.75) prismoid(size2=[22.4, 37.62], h=3.5 ,  xang=[90, 95], yang=[90, 90], rounding=[3,3,3,3])  align(RIGHT) {
 
                 left(32.4/2 -3) back(32.4/2 - 1.75) back_loop() align(BACK) {
                     xrot(90) yrot(180) fwd(37.62/2) up(2.75) right(5)
