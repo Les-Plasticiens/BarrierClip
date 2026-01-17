@@ -3,7 +3,7 @@ $fn = 64;
 // poteau 26.95 x 27.45., largeur face = 22.98
 // trou de visse:  7.59 du top, 6.31 du bord avant, diam du trou 4 mm.
 
-height = 37.62;
+height = 16;
 
 module face_plate( anchor=CENTER, spin=0, orient=UP ) {
     attachable(anchor, spin, orient, size=[5,30.45,height]) {
@@ -12,11 +12,11 @@ module face_plate( anchor=CENTER, spin=0, orient=UP ) {
 
                 tag("keep") position(LEFT) 
                     diff("nope", "yes") {  // holder
-                        cuboid([26.95 +3 + 2.5, 30.45, height],rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT],anchor=RIGHT) {
+                        cuboid([26.95 +3 + 2.5, 30.45, height],rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT, TOP+LEFT, BOTTOM+LEFT],anchor=RIGHT) {
                             right(5) back(3.5) tag("nope") cuboid([30.95 + 1.5, 30.45, height]);
                             
                             tag("yes")align(BACK+LEFT) {
-                               right(3.5) cuboid([3.5, 0.5, height], anchor=RIGHT);
+                               right(6) cuboid([6, 0.5, height], rounding=3, edges=[ TOP+LEFT, BOTTOM+LEFT], anchor=RIGHT);
                             }
                         }
                     
