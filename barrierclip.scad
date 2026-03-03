@@ -11,13 +11,13 @@ height = 16;
 module face_plate( anchor=CENTER, spin=0, orient=UP ) {
     attachable(anchor, spin, orient, size=[5,30.45,height]) {
         diff() {
-           cuboid([5, 30.45, height], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT]) {
+           cuboid([5, 30.45, height], rounding=1.5, edges=[TOP+FRONT, BOTTOM+FRONT]) {
 
                 tag("keep") position(LEFT) 
                     diff("nope", "yes") {  // holder
                         cuboid([26.95 +3 + 2.5, 30.45, height],rounding=1.5, edges=[TOP+FRONT, BOTTOM+FRONT, TOP+LEFT, BOTTOM+LEFT],anchor=RIGHT) {
                             right(5) back(3.5) tag("nope")  cuboid([30.95 + 1.5, 30.45, height]);
-                            tag("yes") align(LEFT+BACK)  xrot(-90) fwd(8) up(2.1) right(5) knuckle_hinge(length=16, segs=5, offset=2, arm_height=0, arm_angle=90,spin=-90, inner = false); // cuboid([5, 5,10]);                            
+                            tag("yes") align(LEFT+BACK)  xrot(-90) fwd(8) up(2.2) right(5) knuckle_hinge(length=16, segs=5, offset=2.2,  arm_height=0, arm_angle=90,spin=-90, inner = false); // cuboid([5, 5,10]);                            
                         }             
                     }
             }
@@ -25,12 +25,12 @@ module face_plate( anchor=CENTER, spin=0, orient=UP ) {
         children();
     }
 }
-
+//back(30.45/2 +2) left(1.2 + 2.3/2)
 module clamp() {
 
-     cuboid([3.5, 32.45, 16]) {
-        attach(BACK) knuckle_hinge(length=16, segs=5, offset=2, arm_height=0, arm_angle=90,spin=-90, inner = true);
-        attach(FRONT) right(1.75) cuboid([7,16,3.5]);
+        left(30.45 + 1.5) back(30.45 + 7.4) cuboid([3.5, 34.75, 16], spin=-180) {
+        attach(BACK) knuckle_hinge(length=16, segs=5, offset=3, arm_height=0, arm_angle=90,spin=-90, knuckle_diam=3.5, inner = true);
+        attach(FRONT) left(1.75) cuboid([7,16,3.5]);
      }
 }
 
@@ -39,7 +39,7 @@ module back_loop( anchor=CENTER, spin=0, orient=UP) {
     attachable(anchor, spin, orient,r=22.4/2, h=height) {
         diff("back_loop_remove", "back_loop_keep") {  
             
-            right_half() cyl(r=32.4/2, h=height, rounding=3) {
+            right_half() cyl(r=32.4/2, h=height, rounding=1.5) {
                 tag("back_loop_remove") align(CENTER, inside=true) {
                     cyl(r=32.4/2 - 3.5, h=height);
                 }
@@ -51,7 +51,7 @@ module back_loop( anchor=CENTER, spin=0, orient=UP) {
 
 face_plate()  
     align(FRONT+RIGHT) {
-        back(3.5) cuboid([46.97, 3.5, height], rounding=3, edges=[TOP+FRONT, BOTTOM+FRONT]) align(RIGHT) {
+        back(3.5) cuboid([46.97, 3.5, height], rounding=1.5, edges=[TOP+FRONT, BOTTOM+FRONT]) align(RIGHT) {
 
                 left(32.4/2 -3) back(32.4/2 - 1.80) back_loop() align(BACK) {
                     xrot(90) yrot(180) fwd(height/2) up(3.05) right(2.5)
@@ -59,14 +59,14 @@ face_plate()
                             edge_profile([TOP + BACK, TOP+FRONT], excess=1, convexity=20)
                                 mask2d_roundover(3);
                             tag("keep") align(RIGHT) {
-                                yrot(-5) cuboid([1, height, 3.5], rounding=3, edges=[TOP+FRONT, TOP+BACK]) align(RIGHT) xrot(90) left(3.5) fwd(1.75) cyl(r=3.5, h= height, rounding=3);
+                                yrot(-5) cuboid([1, height, 3.5], rounding=1.5, edges=[TOP+FRONT, TOP+BACK]) align(RIGHT) xrot(90) left(3.5) fwd(1.75) cyl(r=3.5, h= height, rounding=1.5);
                             }
                         };
                 }   ; 
             }
     }
 
-left(50) clamp();
+ color("Red") clamp();
 
 module foo() {
     cuboid([2,40,15]){
