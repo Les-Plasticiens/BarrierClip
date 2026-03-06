@@ -20,7 +20,7 @@ module face_plate( anchor=CENTER, spin=0, orient=UP ) {
                             tag("yes") align(LEFT+BACK)  xrot(-90) fwd(8) up(2.2) right(5) knuckle_hinge(length=16, segs=5, offset=2.2,  arm_height=0, arm_angle=90,spin=-90, inner = false); // cuboid([5, 5,10]);                            
                         }             
                     }
-            }
+            } align(RIGHT+BACK) color("Red") fwd(1.75) cuboid([1, 1.75, 16]);
         }
         children();
     }
@@ -30,7 +30,7 @@ module clamp() {
 
         left(30.45 + 1.5) back(30.45 + 7.4) cuboid([3.5, 34.75, 16], spin=-180) {
         attach(BACK) knuckle_hinge(length=16, segs=5, offset=3, arm_height=0, arm_angle=90,spin=-90, knuckle_diam=3.5, inner = true);
-        attach(FRONT) left(1.75) cuboid([7,16,3.5]);
+        attach(FRONT) right(1.75)cuboid([7,16,3.5]) align(RIGHT+BOTTOM) left(1.75) cuboid([1.75,16,  1.0]);
      }
 }
 
@@ -50,21 +50,21 @@ module back_loop( anchor=CENTER, spin=0, orient=UP) {
 }
 
 face_plate()  
-    align(FRONT+RIGHT) {
-        back(3.5) cuboid([46.97, 3.5, height], rounding=1.5, edges=[TOP+FRONT, BOTTOM+FRONT]) align(RIGHT) {
+     align(FRONT+RIGHT) {
+         back(3.5) cuboid([46.97, 3.5, height], rounding=1.5, edges=[TOP+FRONT, BOTTOM+FRONT]) align(RIGHT) {
 
-                left(32.4/2 -3) back(32.4/2 - 1.80) back_loop() align(BACK) {
-                    xrot(90) yrot(180) fwd(height/2) up(3.05) right(2.5)
-                        diff()  yrot(5) prismoid(size2=[5.29, height], h=3.5, xang=[95, 85], yang=[90, 90], anchor=RIGHT) {
-                            edge_profile([TOP + BACK, TOP+FRONT], excess=1, convexity=20)
-                                mask2d_roundover(3);
-                            tag("keep") align(RIGHT) {
-                                yrot(-5) cuboid([1, height, 3.5], rounding=1.5, edges=[TOP+FRONT, TOP+BACK]) align(RIGHT) xrot(90) left(3.5) fwd(1.75) cyl(r=3.5, h= height, rounding=1.5);
-                            }
-                        };
-                }   ; 
-            }
-    }
+                 left(32.4/2 -3) back(32.4/2 - 1.80) back_loop() align(BACK) {
+                     xrot(90) yrot(180) fwd(height/2) up(3.05) right(2.5)
+                         diff()  yrot(5) prismoid(size2=[5.29, height], h=3.5, xang=[95, 85], yang=[90, 90], anchor=RIGHT) {
+                             edge_profile([TOP + BACK, TOP+FRONT], excess=1, convexity=20)
+                                 mask2d_roundover(3);
+                             tag("keep") align(RIGHT) {
+                                 yrot(-5) cuboid([1, height, 3.5], rounding=1.5, edges=[TOP+FRONT, TOP+BACK]) align(RIGHT) xrot(90) left(3.5) fwd(1.75) cyl(r=3.5, h= height, rounding=3);
+                             }
+                         };
+                 }   ; 
+             }
+     }
 
  color("Red") clamp();
 
