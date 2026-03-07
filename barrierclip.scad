@@ -20,15 +20,15 @@ module face_plate( anchor=CENTER, spin=0, orient=UP ) {
                             tag("yes") align(LEFT+BACK)  xrot(-90) fwd(8) up(2.2) right(5) knuckle_hinge(length=16, segs=5, offset=2.2,  arm_height=0, arm_angle=90,spin=-90, inner = false); // cuboid([5, 5,10]);                            
                         }             
                     }
-            } align(RIGHT+BACK) color("Red") fwd(1.75) cuboid([1, 1.75, 16]);
+            } align(RIGHT+BACK) fwd(1.75) cuboid([1, 1.75, 16]);
         }
         children();
     }
 }
-//back(30.45/2 +2) left(1.2 + 2.3/2)
+//left(30.45 + 1.5) back(30.45 + 7.4) yrot(180) 
 module clamp() {
 
-        left(30.45 + 1.5) back(30.45 + 7.4) cuboid([3.5, 34.75, 16], spin=-180) {
+        left(30.45 + 1.5) back(30.45 + 6.9) yrot(180) cuboid([3.5, 34.75, 16], spin=-180) {
         attach(BACK) knuckle_hinge(length=16, segs=5, offset=3, arm_height=0, arm_angle=90,spin=-90, knuckle_diam=3.5, inner = true);
         attach(FRONT) right(1.75)cuboid([7,16,3.5]) align(RIGHT+BOTTOM) left(1.75) cuboid([1.75,16,  1.0]);
      }
@@ -66,7 +66,7 @@ face_plate()
              }
      }
 
- color("Red") clamp();
+clamp();
 
 module foo() {
     cuboid([2,40,15]){
